@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import yb.yadnyesh.kafkaproducer.producer.HelloKafkaProducer;
 
 @SpringBootApplication
+@EnableScheduling
 public class KafkaProducerApplication implements CommandLineRunner{
 	
-	@Autowired
-	private HelloKafkaProducer helloKafkaProducer;
 
 	public static void main(String[] args) {
 		SpringApplication.run(KafkaProducerApplication.class, args);
@@ -19,7 +19,6 @@ public class KafkaProducerApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		helloKafkaProducer.sendHelloToKafka("Yadnyesh " + Math.random());
 		
 	}
 
