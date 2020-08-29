@@ -23,10 +23,12 @@ public class KafkaProducerApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 10000; i++) {
 			var key = "key-" + (i % 4);
 			var data = "data: " + i + "with key: " + key;
 			kafkaKeyProducer.sendMessagetoKafkaWithKey(key, data);
+			
+			Thread.sleep(500);
 		}
 	}
 
