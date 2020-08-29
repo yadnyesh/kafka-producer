@@ -6,7 +6,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class FixedRateProducer {
 	
 	private Logger log = org.slf4j.LoggerFactory.getLogger(FixedRateProducer.class);
@@ -20,7 +20,7 @@ public class FixedRateProducer {
 	public void sendMessage() {
 		i++;
 		log.info("i is: " + i);
-		kafkaTemplate.send("t_fixedrate", "Fixed Rate" + i);
+		kafkaTemplate.send("t_fixedrate_2", "Fixed Rate" + i);
 	}
 
 }

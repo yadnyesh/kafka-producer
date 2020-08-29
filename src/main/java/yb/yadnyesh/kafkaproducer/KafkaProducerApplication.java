@@ -7,19 +7,27 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import yb.yadnyesh.kafkaproducer.producer.HelloKafkaProducer;
+import yb.yadnyesh.kafkaproducer.producer.KafkaKeyProducer;
 
 @SpringBootApplication
-@EnableScheduling
+//@EnableScheduling
 public class KafkaProducerApplication implements CommandLineRunner{
 	
 
+	@Autowired
+	private KafkaKeyProducer kafkaKeyProducer;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(KafkaProducerApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+		for (int i = 0; i < 30; i++) {
+			var key = "key-" + (i % 4);
+			var data = "data: " + i + "with key: " + key;
+			kafkaKeyProducer.sendMessagetoKafkaWithKey(key, data);
+		}
 	}
 
 }
